@@ -42,12 +42,6 @@ st.markdown(
 
 
 
-#Check if models and vectorizer are loaded properly
-if not models or vectorizer is None:
-    st.error("❌ Unable to load models or vectorizer. Please check file paths.")
-    st.stop()
-
-
 
 
 
