@@ -1,0 +1,6 @@
+from sklearn.feature_extraction.text import TfidfVectorizer # Import TfidfVectorizer
+import joblib
+# Save the vectorizer
+joblib.dump(TfidfVectorizer, "tfidf_vectorizer.pkl")
+
+print(" TF-IDF Vectorizer saved successfully!")
