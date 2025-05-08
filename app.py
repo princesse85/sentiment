@@ -40,8 +40,7 @@ st.markdown(
 #Load Models and Vectorizer
 
 
-models = load_models()
-vectorizer = load_vectorizer()
+
 
 #Check if models and vectorizer are loaded properly
 if not models or vectorizer is None:
