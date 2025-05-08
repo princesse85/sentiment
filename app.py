@@ -1,5 +1,5 @@
 import streamlit as st
-import joblib
+
 
 # Charger le modèle et le vectorizer
 model = joblib.load("sentiment_model.pkl")
