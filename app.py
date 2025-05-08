@@ -46,11 +46,24 @@ st.markdown(
 
 
 # Load the vectorizer
-with open('tfidf_vectorizer.pkl', 'rb') as f:
+#with open('tfidf_vectorizer.pkl', 'rb') as f:
     #tfidf_vectorizer = pickle.load(f)
 
 ## App Layout and Title
-st.title("  Ecommerce Customer Reviews Sentiment Analysis App  ")
+#st.title("  Ecommerce Customer Reviews Sentiment Analysis App  ")
+
+
+
+
+
+with open('model.pkl', 'rb') as f:
+   model = pickle.load(f)  # 👈 cette ligne doit être indentée
+
+with open('tfidf_vectorizer.pkl', 'rb') as f:
+    tfidf_vectorizer = pickle.load(f)
+
+st.title("Ecommerce Customer Reviews Sentiment Analysis App")
+
 
 st.write("""
         Welcome to our Ecommerce Customer Reviews Analysis App. 
