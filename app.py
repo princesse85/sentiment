@@ -34,8 +34,39 @@ st.markdown(
 
 
 # Load the model
-with open('logistic_regression_model.pkl', 'rb') as f:
-    logistic_regression_model = pickle.load(f)
+#with open('logistic_regression_model.pkl', 'rb') as f:
+    #logistic_regression_model = pickle.load(f)
+#Load Models and Vectorizer
+@st.cache_resource
+def load_models():
+    try:
+        return {
+            "Logistic Regression": joblib.load("logistic_regression_model.pkl"),
+            "Random Forest": joblib.load("random_forest_model.pkl"),
+        }
+    except Exception as e:
+        st.error(f"⚠️ Error loading models: {e}")
+        return {}
+
+@st.cache_resource
+def load_vectorizer():
+    try:
+        return joblib.load("tfidf_vectorizer.pkl")
+    except Exception as e:
+        st.error(f"⚠️ Error loading vectorizer: {e}")
+        return None
+
+models = load_models()
+vectorizer = load_vectorizer()
+
+#Check if models and vectorizer are loaded properly
+if not models or vectorizer is None:
+    st.error("❌ Unable to load models or vectorizer. Please check file paths.")
+    st.stop()
+
+
+
+
 
 # Load the vectorizer
 with open('tfidf_vectorizer.pkl', 'rb') as f:
