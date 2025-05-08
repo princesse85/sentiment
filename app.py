@@ -1,6 +1,6 @@
 import streamlit as st
 import pickle
-import joblib
+
 
 st.markdown(
     """
@@ -38,24 +38,7 @@ st.markdown(
 #with open('logistic_regression_model.pkl', 'rb') as f:
     #logistic_regression_model = pickle.load(f)
 #Load Models and Vectorizer
-@st.cache_resource
-def load_models():
-    try:
-        return {
-            "Logistic Regression": joblib.load("logistic_regression_model.pkl"),
-            "Random Forest": joblib.load("random_forest_model.pkl"),
-        }
-    except Exception as e:
-        st.error(f"⚠️ Error loading models: {e}")
-        return {}
 
-@st.cache_resource
-def load_vectorizer():
-    try:
-        return joblib.load("tfidf_vectorizer.pkl")
-    except Exception as e:
-        st.error(f"⚠️ Error loading vectorizer: {e}")
-        return None
 
 models = load_models()
 vectorizer = load_vectorizer()
