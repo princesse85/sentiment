@@ -56,13 +56,13 @@ st.markdown(
 
 
 
-with open('model.pkl', 'rb') as f:
-   model = pickle.load(f)  # 👈 cette ligne doit être indentée
+#with open('model.pkl', 'rb') as f:
+ #  model = pickle.load(f)  # 👈 cette ligne doit être indentée
 
-with open('tfidf_vectorizer.pkl', 'rb') as f:
-    tfidf_vectorizer = pickle.load(f)
+#with open('tfidf_vectorizer.pkl', 'rb') as f:
+   # tfidf_vectorizer = pickle.load(f)
 
-st.title("Ecommerce Customer Reviews Sentiment Analysis App")
+#st.title("Ecommerce Customer Reviews Sentiment Analysis App")
 
 
 st.write("""
