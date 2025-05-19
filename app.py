@@ -32,10 +32,40 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+#Load Models and Vectorizer
+@st.cache_resource
+def load_models():
+    try:
+        return {
+            "Logistic Regression": joblib.load("logistic_regression_model.pkl"),
+            "Random Forest": joblib.load("random_forest_model.pkl"),
+        }
+    except Exception as e:
+        st.error(f"⚠️ Error loading models: {e}")
+        return {}
+
+@st.cache_resource
+def load_vectorizer():
+    try:
+        return joblib.load("tfidf_vectorizer.pkl")
+    except Exception as e:
+        st.error(f"⚠️ Error loading vectorizer: {e}")
+        return None
+
+models = load_models()
+
+
+
+
+
+
+
+
+
 
 # Load the model
 with open('sentiment_model.pkl', 'rb') as f:
-    sentiment_model = pickle.load(f)
+    sentiment_model = pickle.load(f
 
 # Load the vectorizer
 with open('tfidf_vectorizer.pkl', 'rb') as f:
