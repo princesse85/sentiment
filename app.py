@@ -1,7 +1,6 @@
 import streamlit as st
 import pickle
 
-
 st.markdown(
     """
     <style>
@@ -34,6 +33,16 @@ st.markdown(
 )
 
 
+# Load the model
+with open('sentiment_model.pkl', 'rb') as f:
+    sentiment_model = pickle.load(f)
+
+# Load the vectorizer
+with open('tfidf_vectorizer.pkl', 'rb') as f:
+    tfidf_vectorizer = pickle.load(f)
+
+## App Layout and Title
+st.title("  Ecommerce Customer Reviews Sentiment Analysis App  ")
 
 st.write("""
         Welcome to our Ecommerce Customer Reviews Analysis App. 
