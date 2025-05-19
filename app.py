@@ -65,7 +65,7 @@ models = load_models()
 
 # Load the model
 with open('sentiment_model.pkl', 'rb') as f:
-    sentiment_model = pickle.load(f
+    sentiment_model = pickle.load(f)
 
 # Load the vectorizer
 with open('tfidf_vectorizer.pkl', 'rb') as f:
