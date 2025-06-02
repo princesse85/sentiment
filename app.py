@@ -5,9 +5,18 @@ import pandas as pd
 st.set_page_config(page_title="sentiment", page_icon="💬", layout="wide")
 
 
+#Load Models and Vectorizer
+@st.cache_resource
+def load_models():
+    try:
+        return {
+            "Logistic Regression": joblib.load("logistic_regression_model.pkl"),
+            "Random Forest": joblib.load("random_forest_model.pkl"),
+        }
+    except Exception as e:
+        st.error(f"⚠️ Error loading models: {e}")
+        return {}
 
-models = load_models()
-vectorizer = load_vectorizer()
 
 #Check if models and vectorizer are loaded properly
 if not models or vectorizer is None:
