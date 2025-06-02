@@ -1,28 +1,29 @@
 import streamlit as st
-import joblib
-import numpy as np
+from transformers import pipeline
 
-# Charger le modèle et le vectoriseur
-model = joblib.load("sentiment_model.pkl")
-vectorizer = joblib.load("tfidf_vectorizer.pkl")
+# Charger le pipeline de sentiment
+@st.cache_resource
+def load_model():
+    return pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
 
-# Titre de l'application
-st.title("🧠 Prédiction de sentiment")
-st.subheader("Analysez le sentiment d'un texte (positif / négatif)")
+sentiment_pipeline = load_model()
 
-# Champ de saisie pour le texte utilisateur
-user_input = st.text_area("✍️ Entrez un avis ou une phrase :")
+# Titre de l'app
+st.title("🧠 Analyse de sentiment avec DistilBERT")
+st.write("Entrez un texte et obtenez le sentiment prédit (positif ou négatif).")
 
-# Lorsque l'utilisateur clique sur le bouton
-if st.button("Prédire le sentiment"):
-    if user_input.strip() == "":
-        st.warning("Veuillez entrer un texte pour faire une prédiction.")
+# Champ de texte utilisateur
+user_input = st.text_area("✍️ Entrez votre texte ici :", height=150)
+
+# Bouton de prédiction
+if st.button("🔍 Prédire le sentiment"):
+    if not user_input.strip():
+        st.warning("Veuillez entrer un texte.")
     else:
-        # Transformation du texte via TF-IDF
-        input_transformed = vectorizer.transform([user_input])
-        
-        # Prédiction
-        prediction = model.predict(input_transformed)
+        with st.spinner("Analyse en cours..."):
+            result = sentiment_pipeline(user_input)[0]
+            label = result['label']
+            score = result['score']
+            st.success(f"**Sentiment : {label}**\n\n🔢 Score de confiance : {score:.2f}")
 
-        # Affichage du résultat
-        st.success(f"✅ Sentiment prédit : **{prediction[0]}**")
+
