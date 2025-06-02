@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 
-st.set_page_config(page_title="Sentiment Analysis", page_icon="💬", layout="wide")
+st.set_page_config(page_title="sentiment", page_icon="💬", layout="wide")
 
 #Load Models and Vectorizer
 @st.cache_resource
